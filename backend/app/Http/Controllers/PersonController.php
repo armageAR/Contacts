@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+use App\Http\Resources\PersonResource;
+use App\Http\Resources\PersonCollection;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -12,9 +14,9 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): PersonCollection
     {
-        return Person::all();
+        return new PersonCollection(Person::paginate());
     }
 
     /**
@@ -44,9 +46,9 @@ class PersonController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
+    public function show(Person $person): PersonResource
     {
-        return Person::find($person);
+        return new PersonResource($person);
     }
 
     /**
