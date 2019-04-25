@@ -48,7 +48,7 @@ class PersonController extends Controller
      */
     public function show(Person $person): PersonResource
     {
-        return new PersonResource(($person));
+        return new PersonResource($person);
     }
 
     /**
