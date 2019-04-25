@@ -37,7 +37,8 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Person = Person::create($request->all());
+        return response()->json($Person, 201);
     }
 
     /**

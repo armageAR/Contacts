@@ -9,17 +9,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class PersonTest extends TestCase
 {
     protected $endpoint = 'person';
+    protected $model = \App\Person::class;
 
-    // public function testCreate()
-    // {
-    //     $response = $this->json('POST', "/api/{$this->endpoint}", [
-    //         'first_name' => 'Juan',
-    //         'last_name' => 'Gonzalez',
-    //         'birthdate' => '2012-01-01'
-    //     ]);
+    public function testStore()
+    {
+        $person = factory($this->model)->make();
+        $person = $person->toArray();
 
-    //     $response->assertStatus(200);
-    // }
+        $response = $this->json('POST', "api/{$this->endpoint}/", $person);
+        ($this->model)::destroy($person);
+        $response
+            ->assertStatus(201)
+            ->assertJson($person);
+    }
 
     public function testIndex()
     {
