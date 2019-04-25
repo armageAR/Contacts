@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     protected $appends = ['age'];
-
+    protected $fillable = ['first_name', 'last_name', 'birthdate'];
 
     public function getAgeAttribute()
     {
