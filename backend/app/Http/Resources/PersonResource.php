@@ -29,8 +29,6 @@ class PersonResource extends JsonResource
      */
     public function with($request)
     {
-        return [
-            'age' => \Carbon\Carbon::parse($this->birthdate)->age,
-        ];
+        return [];
     }
 }
